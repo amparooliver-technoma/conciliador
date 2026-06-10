@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+*.log
+test-results/
+playwright-report/
+*.xlsx
+*.xls
+*.csv
+*.pdf
+*.zip
+!public/*.zip
