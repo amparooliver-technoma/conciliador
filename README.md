@@ -18,6 +18,17 @@ Aplicacion web estatica para conciliar documentos mensuales contra un Excel de r
 
 La referencia puede guardarse opcionalmente en IndexedDB dentro del navegador actual.
 
+## Seguridad de dependencias
+
+- `package-lock.json` fija todas las versiones directas y transitivas.
+- Las dependencias directas y los overrides usan versiones exactas, sin rangos `^` o `~`.
+- `.npmrc` configura `min-release-age=3`, por lo que npm 11 no resolverá versiones publicadas hace menos de tres días.
+- `.npmrc` deshabilita scripts de instalación de dependencias por defecto.
+- `npm run security:age` verifica la fecha de publicación de cada dependencia bloqueada y falla de forma cerrada.
+- GitHub Actions ejecuta la verificación de antigüedad, `npm ci --ignore-scripts` y `npm audit` antes de compilar o desplegar.
+
+Usar npm `11.16.0`, fijado mediante `packageManager`, para que la política de antigüedad se aplique localmente.
+
 ## GitHub Pages
 
 El workflow `.github/workflows/deploy-pages.yml` publica automáticamente cada cambio enviado a `main`.

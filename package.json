@@ -3,26 +3,29 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "npm@11.16.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "security:age": "node scripts/check-dependency-age.mjs",
+    "security:check": "npm run security:age && npm audit --audit-level=high"
   },
   "dependencies": {
-    "exceljs": "^4.4.0",
-    "jszip": "^3.10.1",
-    "lucide-react": "^0.468.0",
-    "pdfjs-dist": "^4.10.38",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "exceljs": "4.4.0",
+    "jszip": "3.10.1",
+    "lucide-react": "0.468.0",
+    "pdfjs-dist": "4.10.38",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.5"
+    "@playwright/test": "1.60.0",
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "6.4.3"
   },
   "overrides": {
-    "uuid": "^11.1.1"
+    "uuid": "11.1.1"
   }
 }

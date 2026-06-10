@@ -1,0 +1,30 @@
+name: Dependency Security
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Use pinned npm version
+        run: npm install --global npm@11.16.0
+      - name: Verify dependency publication age
+        run: npm run security:age
+      - name: Install exactly from lockfile
+        run: npm ci --ignore-scripts
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+      - name: Build
+        run: npm run build
